@@ -1,12 +1,4 @@
-@use 'sass:color';
-
-:root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #{color.scale(#2563eb, $lightness: -15%)};
-  --color-accent: #10b981;
-  --color-danger: #ef4444;
-  --font-family-base: 'Segoe UI', Arial, sans-serif;
-}
+/* frontend/src/assets/main.scss (清理后) */
 
 * {
   box-sizing: border-box;
@@ -14,8 +6,10 @@
 
 body {
   margin: 0;
-  font-family: var(--font-family-base);
-  background: #f5f7fa;
+  // 保留字体，让 Element Plus 的组件继承
+  font-family: 'Segoe UI', Arial, sans-serif; 
+  // 保留应用背景色
+  background: #f5f7fa; 
   color: #1f2933;
 }
 
@@ -24,8 +18,8 @@ a {
   text-decoration: none;
 }
 
-.page-container {
-  padding: 24px;
-  min-height: 100vh;
-}
-
+// 注意：删除或注释掉 .page-container，让 Element Plus 的布局组件接管。
+// .page-container {
+//   padding: 24px;
+//   min-height: 100vh;
+// }

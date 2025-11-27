@@ -1,25 +1,25 @@
-// dto/response/AuthResponse.java
 package com.CodeExamner.dto.response;
 
-import com.CodeExamner.entity.enums.UserRole;
 import lombok.Data;
 
 @Data
 public class AuthResponse {
     private String token;
+    private Long id;
+    private String email; // 使用邮箱作为用户标识
+    private String role;
     private String type = "Bearer";
-    private Long userId;
-    private String username;
-    private UserRole role;
     private String message;
 
-    public AuthResponse(String token, Long userId, String username, UserRole role) {
+    // 成功登录/注册的构造函数
+    public AuthResponse(String token, Long id, String email, String role) {
         this.token = token;
-        this.userId = userId;
-        this.username = username;
+        this.id = id;
+        this.email = email;
         this.role = role;
     }
-
+    
+    // 失败/错误的构造函数
     public AuthResponse(String message) {
         this.message = message;
     }

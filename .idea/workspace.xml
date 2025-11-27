@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe42e7a2-92ca-4a25-ba84-6605e0dae579" name="更改" comment="·修复修改用户身份功能">
-      <change afterPath="$PROJECT_DIR$/.idea/IntelliLang.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="fe42e7a2-92ca-4a25-ba84-6605e0dae579" name="更改" comment="·修复修改用户身份功能" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,6 +125,7 @@
       <workItem from="1761458774864" duration="4121000" />
       <workItem from="1762919135792" duration="2020000" />
       <workItem from="1762921873716" duration="5054000" />
+      <workItem from="1764128996137" duration="7000" />
     </task>
     <task id="LOCAL-00001" summary="demo&#10;缺少异常处理和工具类&#10;缺少Judge0和RabbitMQ">
       <option name="closed" value="true" />

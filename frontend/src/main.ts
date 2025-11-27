@@ -1,22 +1,17 @@
+// frontend/src/main.ts
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import App from './App.vue'
-import router from './router'
-import './assets/main.scss'
+import ElementPlus from 'element-plus'
 
-async function bootstrap() {
-  if (import.meta.env.MODE === 'mock') {
-    const { bootstrapMocks } = await import('./services/mocks/mockAdapter')
-    bootstrapMocks()
-  }
+import './assets/element-variables.scss' 
 
-  const app = createApp(App)
+import App from './App.vue' 
+import router from './router' 
 
-  app.use(createPinia())
-  app.use(router)
+const app = createApp(App)
 
-  app.mount('#app')
-}
-
-bootstrap()
-
+app.use(createPinia())
+app.use(router)
+app.use(ElementPlus) // 使用 Element Plus 插件
+app.mount('#app')

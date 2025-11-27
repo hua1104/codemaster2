@@ -1,62 +1,72 @@
 <template>
-  <div class="layout">
-    <header class="header">
-      <h1>Code Examner 学生端</h1>
-      <div class="actions">
-        <RouterLink to="/dashboard">首页</RouterLink>
-        <RouterLink to="/dashboard/exams">考试列表</RouterLink>
-        <RouterLink to="/dashboard/submissions">我的提交</RouterLink>
-        <RouterLink to="/dashboard/profile">个人中心</RouterLink>
+  <el-container class="student-layout-container">
+    <el-header class="student-layout-header">
+      <div class="logo-text">Code Examner</div>
+      
+      <div class="header-nav">
+        <el-menu mode="horizontal" :default-active="route.path" router class="main-menu">
+          <el-menu-item index="/dashboard">首页</el-menu-item>
+          <el-menu-item index="/dashboard/exams">我的考试</el-menu-item>
+          <el-menu-item index="/dashboard/submissions">我的提交</el-menu-item>
+        </el-menu>
+        
+        <el-button link type="danger" style="margin-left: 20px;" @click="handleLogout">退出</el-button>
       </div>
-    </header>
-    <main class="content">
-      <RouterView />
-    </main>
-  </div>
+    </el-header>
+
+    <el-main class="student-layout-main">
+      <router-view />
+    </el-main>
+  </el-container>
 </template>
 
 <script setup lang="ts">
+import { useRoute, useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
+
+const route = useRoute();
+const router = useRouter();
+
+const handleLogout = () => {
+    ElMessage.success('退出成功！');
+    router.push('/auth/login');
+};
 </script>
 
 <style scoped>
-.layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.student-layout-container {
+  height: 100vh;
 }
 
-.header {
+.student-layout-header {
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 24px;
-  background: #ffffff;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid var(--el-border-color-light);
+  height: 60px; /* 默认高度 */
 }
 
-.header h1 {
-  font-size: 20px;
-  margin: 0;
+.logo-text {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--el-color-primary);
 }
 
-.actions {
+.header-nav {
   display: flex;
-  gap: 16px;
+  align-items: center;
 }
 
-.actions a {
-  color: var(--color-primary);
-  font-weight: 500;
+.main-menu {
+  border-bottom: none !important;
+  height: 60px;
 }
 
-.actions a.router-link-active {
-  border-bottom: 2px solid var(--color-primary);
-  padding-bottom: 4px;
-}
-
-.content {
-  flex: 1;
-  padding: 24px;
+.student-layout-main {
+  padding: 0; /* 移除默认 padding，让子视图自己控制布局 */
+  height: calc(100vh - 60px); 
+  overflow: hidden; 
 }
 </style>
 

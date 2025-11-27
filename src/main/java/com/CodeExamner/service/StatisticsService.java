@@ -1,9 +1,8 @@
-// service/StatisticsService.java
 package com.CodeExamner.service;
 
 import com.CodeExamner.dto.response.StatisticsResponse;
+import com.CodeExamner.entity.enums.ExamStatus; // 导入 ExamStatus
 import com.CodeExamner.entity.enums.JudgeStatus;
-import com.CodeExamner.judge0.Judge0Status;
 import com.CodeExamner.repository.ExamRepository;
 import com.CodeExamner.repository.ProblemRepository;
 import com.CodeExamner.repository.SubmissionRepository;
@@ -37,16 +36,20 @@ public class StatisticsService {
 
         // 用户统计
         response.setTotalUsers(userRepository.count());
+        // 假设 UserRepository 中 countByRole 方法接受 UserRole 枚举
         response.setTotalStudents(userRepository.countByRole(UserRole.STUDENT));
         response.setTotalTeachers(userRepository.countByRole(UserRole.TEACHER));
 
         // 题目统计
         response.setTotalProblems(problemRepository.count());
+        // 假设 ProblemRepository 中 countByIsPublicTrue 方法存在
         response.setPublicProblems(problemRepository.countByIsPublicTrue());
 
         // 考试统计
         response.setTotalExams(examRepository.count());
-        response.setOngoingExams(examRepository.countByStatus("ONGOING"));
+        
+        // 修正点：将 String "ONGOING" 替换为 ExamStatus.ONGOING
+        response.setOngoingExams(examRepository.countByStatus(ExamStatus.ONGOING)); 
 
         // 提交统计
         response.setTotalSubmissions(submissionRepository.count());
@@ -69,8 +72,7 @@ public class StatisticsService {
 
         // 最近活动
         LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1);
-        Long recentSubmissions = submissionRepository.countByStudentIdAndSubmitTimeAfter(userId, oneWeekAgo);
-        stats.put("recentSubmissions", recentSubmissions);
+        stats.put("recentSubmissions", submissionRepository.countByStudentIdAndSubmitTimeAfter(userId, oneWeekAgo));
 
         return stats;
     }
