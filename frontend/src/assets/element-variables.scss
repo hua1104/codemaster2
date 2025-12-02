@@ -1,0 +1,25 @@
+// frontend/src/assets/element-variables.scss
+
+// 1. 定义您的主色
+$ep-color-primary: #2563eb; 
+
+// 2. 导入 Element Plus 官方的 Sass mixins (这个是需要的)
+@use "element-plus/theme-chalk/src/mixins/config" as *;
+
+// 3. 【删除此行】 原本的 @use "element-plus/theme-chalk/src/common/var" as *;
+
+// 4. 重写颜色和字体变量 (只用 @forward)
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    "primary": (
+      "base": $ep-color-primary,
+    ),
+  ), // <-- 确保这里有逗号 (,)
+  $font-family: (
+    "base": '"Segoe UI", Arial, sans-serif' 
+  )
+);
+
+// 5. 【新增】最后，导入 Element Plus 的主样式文件，它会使用上面配置好的变量
+// 注意：必须导入这个文件，它包含了 Element Plus 所有的组件样式。
+@use "element-plus/theme-chalk/src/index.scss";
